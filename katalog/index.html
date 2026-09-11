@@ -3,24 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation - Korean Aesthetic</title>
+  <title>Wedding Invitation - Korean Fine Art</title>
   
-  <!-- Google Fonts: Cormorant Garamond (Serif Elegan) & Noto Sans KR (Minimalis) -->
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icon -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500&family=Noto+Serif+KR:wght@200;300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg-cream: #FDFBF7;
+      --bg-cream: #F8F5F0;
       --bg-card: #FFFFFF;
-      --text-dark: #2C2C2A;
-      --text-muted: #8A8580;
-      --border-line: #E8E3DC;
-      --accent-color: #5A524C;
+      --text-dark: #2B2825;
+      --text-muted: #8C857B;
+      --border-color: #E2DAD0;
+      --accent-gold: #C5A059;
     }
 
     * {
@@ -30,8 +28,8 @@
     }
 
     body {
-      font-family: 'Noto Sans KR', sans-serif;
-      background-color: #EFECE6;
+      font-family: 'Montserrat', sans-serif;
+      background-color: #DCD6CD;
       color: var(--text-dark);
       display: flex;
       justify-content: center;
@@ -43,18 +41,29 @@
       overflow: hidden;
     }
 
-    /* Container HP (Frame Utama) */
+    /* Container Utama Frame Mobile */
     .mobile-frame {
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
       background-color: var(--bg-cream);
-      box-shadow: 0 0 25px rgba(0,0,0,0.06);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
       position: relative;
       overflow-x: hidden;
+      border-left: 1px solid rgba(0,0,0,0.05);
+      border-right: 1px solid rgba(0,0,0,0.05);
     }
 
-    /* COVER / LOCK SCREEN */
+    /* BINGKAI GARIS DEKORATIF DUA LAPIS */
+    .inner-border {
+      position: absolute;
+      top: 12px; left: 12px; right: 12px; bottom: 12px;
+      border: 1px solid var(--border-color);
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* COVER SCREEN */
     #cover {
       position: fixed;
       top: 0;
@@ -63,15 +72,15 @@
       width: 100%;
       max-width: 430px;
       height: 100vh;
-      background-color: var(--bg-cream);
+      background: var(--bg-cream);
       z-index: 999;
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       text-align: center;
-      padding: 40px 25px;
-      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+      padding: 60px 30px;
+      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
     }
 
     #cover.opened {
@@ -80,76 +89,78 @@
       pointer-events: none;
     }
 
+    .cover-top {
+      margin-top: 10px;
+    }
+
     .cover-tag {
-      font-size: 0.7rem;
-      letter-spacing: 4px;
+      font-size: 0.65rem;
+      letter-spacing: 5px;
       text-transform: uppercase;
       color: var(--text-muted);
-      margin-bottom: 25px;
+      margin-bottom: 15px;
     }
 
     .cover-names {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       font-weight: 300;
       line-height: 1.2;
-      color: var(--text-dark);
-      margin-bottom: 30px;
+      letter-spacing: 1px;
     }
 
-    .cover-names span {
-      display: block;
-      font-size: 1.2rem;
-      font-style: italic;
-      margin: 5px 0;
-      color: var(--text-muted);
-    }
-
-    .cover-image-frame {
-      width: 80%;
-      height: 320px;
-      margin-bottom: 35px;
-      border-radius: 2px;
-      overflow: hidden;
-      border: 1px solid var(--border-line);
-      padding: 6px;
+    .cover-photo-container {
+      width: 100%;
+      max-width: 280px;
+      height: 360px;
+      padding: 10px;
       background: #FFF;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
     }
 
-    .cover-image-frame img {
+    .cover-photo-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: grayscale(15%) contrast(95%);
+      filter: saturate(85%) contrast(95%);
     }
 
     .btn-open {
       background-color: var(--text-dark);
-      color: #FFFFFF;
+      color: #FFF;
       border: none;
-      padding: 14px 36px;
-      font-size: 0.75rem;
-      letter-spacing: 3px;
+      padding: 14px 40px;
+      font-size: 0.7rem;
+      letter-spacing: 4px;
       text-transform: uppercase;
-      border-radius: 1px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: all 0.3s ease;
+      margin-bottom: 10px;
     }
 
     .btn-open:hover {
-      background-color: var(--text-muted);
+      background-color: var(--accent-gold);
     }
 
-    /* KONTEN UTAMA UNDANGAN */
+    /* KONTEN UTAMA */
     .content-section {
-      padding: 50px 25px;
+      position: relative;
+      padding: 60px 30px;
       text-align: center;
-      border-bottom: 1px solid var(--border-line);
+      z-index: 1;
+    }
+
+    .divider-line {
+      width: 40px;
+      height: 1px;
+      background-color: var(--accent-gold);
+      margin: 25px auto;
     }
 
     .section-subtitle {
-      font-size: 0.65rem;
-      letter-spacing: 3px;
+      font-size: 0.6rem;
+      letter-spacing: 4px;
       text-transform: uppercase;
       color: var(--text-muted);
       margin-bottom: 12px;
@@ -157,196 +168,356 @@
 
     .section-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 400;
-      margin-bottom: 25px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
 
+    /* Quote Box */
     .quote-box {
       font-family: 'Cormorant Garamond', serif;
       font-style: italic;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      color: var(--accent-color);
-      padding: 0 10px;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #555;
+      padding: 10px;
     }
 
-    .couple-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      margin-top: 20px;
+    /* Groom & Bride */
+    .couple-card {
+      margin: 30px 0;
     }
 
-    .couple-card img {
-      width: 140px;
-      height: 180px;
+    .couple-img-wrapper {
+      width: 170px;
+      height: 220px;
+      margin: 0 auto 18px auto;
+      padding: 6px;
+      background: #FFF;
+      border: 1px solid var(--border-color);
+    }
+
+    .couple-img-wrapper img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 2px;
-      margin-bottom: 15px;
-      border: 1px solid var(--border-line);
     }
 
     .couple-name {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      margin-bottom: 5px;
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin-bottom: 6px;
     }
 
     .couple-parents {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    .event-card {
-      background-color: var(--bg-card);
-      border: 1px solid var(--border-line);
-      padding: 30px 20px;
-      margin-bottom: 20px;
-      border-radius: 2px;
+    /* Countdown Section */
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
     }
 
-    .event-title {
+    .count-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 12px 8px;
+      min-width: 65px;
+    }
+
+    .count-num {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      margin-bottom: 15px;
-      letter-spacing: 1px;
-    }
-
-    .event-info {
-      font-size: 0.85rem;
-      color: var(--accent-color);
-      margin-bottom: 8px;
-      line-height: 1.4;
-    }
-
-    .btn-link {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 24px;
-      border: 1px solid var(--text-dark);
+      font-size: 1.6rem;
       color: var(--text-dark);
-      text-decoration: none;
-      font-size: 0.7rem;
+    }
+
+    .count-label {
+      font-size: 0.55rem;
       letter-spacing: 2px;
       text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Event Cards */
+    .event-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 35px 20px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .event-type {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .event-detail {
+      font-size: 0.8rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .btn-action {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      border: 1px solid var(--text-dark);
+      background: transparent;
+      color: var(--text-dark);
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
       transition: all 0.3s ease;
     }
 
-    .btn-link:hover {
-      background-color: var(--text-dark);
+    .btn-action:hover {
+      background: var(--text-dark);
       color: #FFF;
     }
 
-    /* FOOTER */
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+    /* Gift / Angpao Box */
+    .gift-card {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      padding: 25px 20px;
+      margin-top: 15px;
+    }
+
+    .bank-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    .account-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      color: var(--accent-gold);
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+    }
+
+    /* Music Floating Button */
+    #music-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      width: 40px;
+      height: 40px;
+      background: var(--text-dark);
+      color: #FFF;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 998;
+      font-size: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
     }
   </style>
 </head>
 <body class="no-scroll">
 
   <div class="mobile-frame">
+    <!-- Frame Garis Dekoratif -->
+    <div class="inner-border"></div>
 
-    <!-- COVER SCREEN -->
+    <!-- Music Player -->
+    <audio id="bg-music" loop preload="auto">
+      <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/tracks/722Ld33xH8E4fQeE.mp3" type="audio/mpeg">
+    </audio>
+    <div id="music-btn" onclick="toggleMusic()" style="display: none;">
+      <i id="music-icon" class="fas fa-music"></i>
+    </div>
+
+    <!-- COVER / LOCK SCREEN -->
     <div id="cover">
-      <div class="cover-tag">Wedding Invitation</div>
-      <h1 class="cover-names">
-        Name &amp; Name
-      </h1>
-      <div class="cover-image-frame">
-        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop" alt="Prewedding Photo">
+      <div class="cover-top">
+        <div class="cover-tag">The Wedding Of</div>
+        <h1 class="cover-names">Ji-hoon &amp; Min-ji</h1>
       </div>
-      <button class="btn-open" onclick="openInvitation()">Open Invitation</button>
+
+      <div class="cover-photo-container">
+        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop" alt="Prewedding Cover">
+      </div>
+
+      <div>
+        <button class="btn-open" onclick="openInvitation()">Open Invitation</button>
+      </div>
     </div>
 
     <!-- MAIN CONTENT -->
-    
-    <!-- Section 1: Header / Quote -->
+
+    <!-- Section 1: Intro / Quote -->
     <section class="content-section">
-      <div class="section-subtitle">The Marriage Of</div>
+      <div class="section-subtitle">Wedding Invitation</div>
+      <div class="section-title" style="font-size: 1.8rem;">2026 . 10 . 24</div>
+      <div class="divider-line"></div>
+      
       <div class="quote-box">
-        "Two souls with but a single thought,<br>Two hearts that beat as one."
+        "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage."
       </div>
+      <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; letter-spacing: 1px;">- Lao Tzu -</p>
     </section>
 
     <!-- Section 2: Groom & Bride -->
-    <section class="content-section">
+    <section class="content-section" style="background-color: rgba(255,255,255,0.5);">
       <div class="section-subtitle">Groom &amp; Bride</div>
       <h2 class="section-title">We Are Getting Married</h2>
 
-      <div class="couple-grid">
-        <!-- Groom -->
-        <div class="couple-card">
+      <!-- Groom -->
+      <div class="couple-card">
+        <div class="couple-img-wrapper">
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" alt="Groom">
-          <div class="couple-name">Groom Name</div>
-          <div class="couple-parents">
-            Son of Mr. Father &amp; Mrs. Mother
-          </div>
         </div>
+        <div class="couple-name">Kim Ji-hoon</div>
+        <div class="couple-parents">
+          First son of Mr. Kim Sung-min<br>&amp; Mrs. Lee Young-ae
+        </div>
+      </div>
 
-        <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; color: var(--text-muted);">&amp;</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--accent-gold); margin: 20px 0;">&amp;</div>
 
-        <!-- Bride -->
-        <div class="couple-card">
+      <!-- Bride -->
+      <div class="couple-card">
+        <div class="couple-img-wrapper">
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" alt="Bride">
-          <div class="couple-name">Bride Name</div>
-          <div class="couple-parents">
-            Daughter of Mr. Father &amp; Mrs. Mother
-          </div>
+        </div>
+        <div class="couple-name">Park Min-ji</div>
+        <div class="couple-parents">
+          Daughter of Mr. Park Hyun-woo<br>&amp; Mrs. Choi Ji-woo
         </div>
       </div>
     </section>
 
-    <!-- Section 3: Event Detail -->
+    <!-- Section 3: Date & Countdown -->
     <section class="content-section">
       <div class="section-subtitle">Save The Date</div>
-      <h2 class="section-title">Wedding Schedule</h2>
+      <h2 class="section-title">October 24, 2026</h2>
+      <p style="font-size: 0.75rem; color: var(--text-muted);">Saturday, 11:00 AM WIB</p>
 
-      <!-- Pemberkatan / Akad -->
-      <div class="event-card">
-        <div class="event-title">Holy Matrimony</div>
-        <div class="event-info">Saturday, 24 October 2026</div>
-        <div class="event-info">10:00 WIB</div>
-        <div class="event-info" style="margin-top: 10px;">
-          <b>Location Name</b><br>
-          Address detail goes here, City
+      <!-- Countdown -->
+      <div class="countdown-grid">
+        <div class="count-box">
+          <div class="count-num" id="days">00</div>
+          <div class="count-label">Days</div>
+        </div>
+        <div class="count-box">
+          <div class="count-num" id="hours">00</div>
+          <div class="count-label">Hours</div>
+        </div>
+        <div class="count-box">
+          <div class="count-num" id="mins">00</div>
+          <div class="count-label">Mins</div>
+        </div>
+        <div class="count-box">
+          <div class="count-num" id="secs">00</div>
+          <div class="count-label">Secs</div>
         </div>
       </div>
+    </section>
 
-      <!-- Resepsi -->
+    <!-- Section 4: Schedule -->
+    <section class="content-section" style="background-color: rgba(255,255,255,0.5);">
+      <div class="section-subtitle">Location &amp; Time</div>
+      <h2 class="section-title">Wedding Ceremony</h2>
+
       <div class="event-card">
-        <div class="event-title">Wedding Reception</div>
-        <div class="event-info">Saturday, 24 October 2026</div>
-        <div class="event-info">18:00 WIB</div>
-        <div class="event-info" style="margin-top: 10px;">
-          <b>Location Name</b><br>
-          Address detail goes here, City
-        </div>
+        <div class="event-type">Holy Matrimony &amp; Reception</div>
+        <div class="divider-line" style="margin: 15px auto;"></div>
+        <div class="event-detail"><b>Time:</b> 11:00 WIB - Finish</div>
+        <div class="event-detail"><b>Venue:</b> Grand Ballroom, Hotel Mulia</div>
+        <div class="event-detail" style="font-size: 0.75rem; color: #888;">Jl. Asia Afrika No. 6, Jakarta</div>
+        
+        <a href="https://maps.google.com" target="_blank" class="btn-action">View Google Maps</a>
       </div>
+    </section>
 
-      <a href="https://maps.google.com" target="_blank" class="btn-link">View Google Maps</a>
+    <!-- Section 5: Digital Gift -->
+    <section class="content-section">
+      <div class="section-subtitle">Wedding Gift</div>
+      <h2 class="section-title">Share Your Love</h2>
+      <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;">
+        Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui rekening di bawah ini:
+      </p>
+
+      <div class="gift-card">
+        <div class="bank-name">BANK BCA</div>
+        <div class="account-num" id="rekening-bca">123 456 7890</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px;">a.n. Kim Ji-hoon</div>
+        <button class="btn-action" style="padding: 8px 18px; margin-top: 0;" onclick="copyRekening('rekening-bca')">Copy Number</button>
+      </div>
     </section>
 
     <!-- Footer -->
-    <footer>
-      <p>Thank You</p>
+    <footer style="padding: 40px 20px 60px 20px; text-align: center; border-top: 1px solid var(--border-color);">
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 5px;">Ji-hoon &amp; Min-ji</div>
+      <p style="font-size: 0.65rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">Thank You</p>
     </footer>
 
   </div>
 
   <script>
     function openInvitation() {
-      // Sembunyikan cover ke atas dengan animasi smooth
       document.getElementById('cover').classList.add('opened');
-      
-      // Buka scroll halaman
       document.body.classList.remove('no-scroll');
+      
+      // Play Audio
+      var music = document.getElementById('bg-music');
+      if (music) {
+        music.play().catch(function(e) { console.log(e); });
+        document.getElementById('music-btn').style.display = 'flex';
+      }
     }
+
+    function toggleMusic() {
+      var music = document.getElementById('bg-music');
+      var icon = document.getElementById('music-icon');
+      if (music.paused) {
+        music.play();
+        icon.className = 'fas fa-music';
+      } else {
+        music.pause();
+        icon.className = 'fas fa-volume-mute';
+      }
+    }
+
+    function copyRekening(elementId) {
+      var text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(function() {
+        alert('Nomor rekening berhasil disalin!');
+      });
+    }
+
+    // Simple Countdown Script (Target: 24 Oct 2026)
+    const targetDate = new Date("October 24, 2026 11:00:00").getTime();
+    
+    setInterval(function() {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+
+      if (diff > 0) {
+        document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
+      }
+    }, 1000);
   </script>
 </body>
 </html>
