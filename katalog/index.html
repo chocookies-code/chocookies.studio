@@ -3,22 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation - Korean Fine Art</title>
+  <title>The Wedding of Yunita & Riyan</title>
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Montserrat:wght@300;400;500&family=Noto+Serif+KR:wght@200;300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
     :root {
-      --bg-cream: #F8F5F0;
-      --bg-card: #FFFFFF;
+      --bg-cream: #EFECE6;
+      --bg-card: #F7F5F0;
+      --accent-brown: #B59C82;
+      --dark-brown: #8C735B;
       --text-dark: #2B2825;
-      --text-muted: #8C857B;
-      --border-color: #E2DAD0;
-      --accent-gold: #C5A059;
+      --text-muted: #7A756E;
+      --border-gold: #D4C3AC;
     }
 
     * {
@@ -29,7 +30,7 @@
 
     body {
       font-family: 'Montserrat', sans-serif;
-      background-color: #DCD6CD;
+      background-color: #D3CDC6;
       color: var(--text-dark);
       display: flex;
       justify-content: center;
@@ -41,29 +42,18 @@
       overflow: hidden;
     }
 
-    /* Container Utama Frame Mobile */
+    /* Container HP */
     .mobile-frame {
       width: 100%;
       max-width: 430px;
       min-height: 100vh;
       background-color: var(--bg-cream);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
       position: relative;
       overflow-x: hidden;
-      border-left: 1px solid rgba(0,0,0,0.05);
-      border-right: 1px solid rgba(0,0,0,0.05);
     }
 
-    /* BINGKAI GARIS DEKORATIF DUA LAPIS */
-    .inner-border {
-      position: absolute;
-      top: 12px; left: 12px; right: 12px; bottom: 12px;
-      border: 1px solid var(--border-color);
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    /* COVER SCREEN */
+    /* COVER / LOCK SCREEN */
     #cover {
       position: fixed;
       top: 0;
@@ -72,15 +62,16 @@
       width: 100%;
       max-width: 430px;
       height: 100vh;
-      background: var(--bg-cream);
+      background: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.45)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop') center/cover no-repeat;
       z-index: 999;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
       text-align: center;
-      padding: 60px 30px;
-      transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
+      padding: 60px 25px 40px 25px;
+      color: #FFF;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
     }
 
     #cover.opened {
@@ -89,236 +80,359 @@
       pointer-events: none;
     }
 
-    .cover-top {
-      margin-top: 10px;
+    .cover-top .sub-title {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      margin-bottom: 5px;
+      font-weight: 300;
     }
 
-    .cover-tag {
+    .cover-top .main-title {
+      font-family: 'Alex Brush', cursive;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 5px;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    }
+
+    .hashtag {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      font-weight: 500;
+    }
+
+    .guest-card {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      padding: 20px 30px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .guest-card p {
+      font-size: 0.75rem;
+      margin-bottom: 8px;
+    }
+
+    .guest-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .btn-open {
+      background: rgba(255, 255, 255, 0.25);
+      border: 1px solid #FFF;
+      color: #FFF;
+      padding: 10px 24px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(5px);
+      transition: all 0.3s ease;
+    }
+
+    .btn-open:hover {
+      background: #FFF;
+      color: var(--text-dark);
+    }
+
+    /* KONTEN UTAMA */
+    .hero-section {
+      position: relative;
+      height: 480px;
+      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop') center/cover;
+      color: #FFF;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 40px 20px 30px 20px;
+      text-align: center;
+    }
+
+    /* Countdown Overlay */
+    .countdown-overlay {
+      display: flex;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      padding: 10px 15px;
+      border-radius: 15px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .count-box {
+      text-align: center;
+      min-width: 50px;
+    }
+
+    .count-num {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
+
+    .count-label {
+      font-size: 0.6rem;
+      opacity: 0.8;
+    }
+
+    /* Grid Foto 3 Kolom */
+    .photo-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      padding: 20px;
+    }
+
+    .photo-grid-3 img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    /* Greeting Section */
+    .greeting-section {
+      padding: 30px 25px;
+      text-align: center;
+    }
+
+    .arabic-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: var(--dark-brown);
+    }
+
+    .quote-text {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* SPLIT PROFILE CARD (Bride & Groom) */
+    .profile-container {
+      padding: 0 20px 30px 20px;
+    }
+
+    .profile-card {
+      display: flex;
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.04);
+      margin-bottom: 25px;
+      border: 1px solid var(--border-gold);
+    }
+
+    .profile-side-label {
+      width: 45px;
+      background: var(--dark-brown);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'Alex Brush', cursive;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    .profile-img-box {
+      width: 50%;
+      position: relative;
+      padding: 10px;
+    }
+
+    .profile-img-box img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 6px;
+    }
+
+    .profile-info {
+      width: 50%;
+      padding: 20px 15px 20px 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .profile-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 6px;
+      line-height: 1.2;
+    }
+
+    .profile-parents {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .btn-ig {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 12px;
+      background: #FFF;
+      border: 1px solid var(--dark-brown);
+      color: var(--dark-brown);
+      border-radius: 15px;
       font-size: 0.65rem;
-      letter-spacing: 5px;
+      text-decoration: none;
+      width: fit-content;
+    }
+
+    /* WEDDING EVENT CARD (Aesthetic Split) */
+    .event-section {
+      padding: 20px;
+    }
+
+    .section-title-script {
+      font-family: 'Alex Brush', cursive;
+      font-size: 3rem;
+      text-align: center;
+      color: var(--dark-brown);
+      margin-bottom: 20px;
+    }
+
+    .event-split-card {
+      background: var(--bg-card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-gold);
+      margin-bottom: 25px;
+    }
+
+    .event-split-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .event-body {
+      display: flex;
+    }
+
+    .event-side-title {
+      width: 45px;
+      background: var(--accent-brown);
+      color: #FFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      font-family: 'Alex Brush', cursive;
+      font-size: 1.6rem;
+    }
+
+    .event-details {
+      padding: 20px;
+      flex: 1;
+      text-align: center;
+    }
+
+    .event-day {
+      font-size: 0.85rem;
+      color: var(--text-muted);
       text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .event-date-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      line-height: 1;
+      margin: 5px 0;
+      color: var(--dark-brown);
+      border-bottom: 1px solid var(--border-gold);
+      padding-bottom: 8px;
+    }
+
+    .event-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .event-location {
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .event-address {
+      font-size: 0.7rem;
       color: var(--text-muted);
       margin-bottom: 15px;
     }
 
-    .cover-names {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.6rem;
-      font-weight: 300;
-      line-height: 1.2;
-      letter-spacing: 1px;
-    }
-
-    .cover-photo-container {
-      width: 100%;
-      max-width: 280px;
-      height: 360px;
-      padding: 10px;
-      background: #FFF;
-      border: 1px solid var(--border-color);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.03);
-    }
-
-    .cover-photo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(85%) contrast(95%);
-    }
-
-    .btn-open {
-      background-color: var(--text-dark);
+    .btn-maps {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      background: var(--dark-brown);
       color: #FFF;
-      border: none;
-      padding: 14px 40px;
+      border-radius: 20px;
       font-size: 0.7rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-bottom: 10px;
+      text-decoration: none;
     }
 
-    .btn-open:hover {
-      background-color: var(--accent-gold);
-    }
-
-    /* KONTEN UTAMA */
-    .content-section {
-      position: relative;
-      padding: 60px 30px;
-      text-align: center;
-      z-index: 1;
-    }
-
-    .divider-line {
-      width: 40px;
-      height: 1px;
-      background-color: var(--accent-gold);
-      margin: 25px auto;
-    }
-
-    .section-subtitle {
-      font-size: 0.6rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    .section-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.2rem;
-      font-weight: 400;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-
-    /* Quote Box */
-    .quote-box {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #555;
-      padding: 10px;
-    }
-
-    /* Groom & Bride */
-    .couple-card {
-      margin: 30px 0;
-    }
-
-    .couple-img-wrapper {
-      width: 170px;
-      height: 220px;
-      margin: 0 auto 18px auto;
-      padding: 6px;
+    /* DRESS CODE SECTION */
+    .dress-code-box {
       background: #FFF;
-      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      border: 1px solid var(--border-gold);
+      margin: 20px;
     }
 
-    .couple-img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    .dress-code-title {
+      font-family: 'Alex Brush', cursive;
+      font-size: 2.2rem;
+      color: var(--dark-brown);
+      margin-bottom: 8px;
     }
 
-    .couple-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8rem;
-      font-weight: 400;
-      margin-bottom: 6px;
-    }
-
-    .couple-parents {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Countdown Section */
-    .countdown-grid {
+    .color-palette {
       display: flex;
       justify-content: center;
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .count-box {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 12px 8px;
-      min-width: 65px;
-    }
-
-    .count-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      color: var(--text-dark);
-    }
-
-    .count-label {
-      font-size: 0.55rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    /* Event Cards */
-    .event-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      padding: 35px 20px;
-      margin-bottom: 20px;
-      position: relative;
-    }
-
-    .event-type {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      margin-bottom: 12px;
-    }
-
-    .event-detail {
-      font-size: 0.8rem;
-      color: #666;
-      line-height: 1.6;
-      margin-bottom: 6px;
-    }
-
-    .btn-action {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 30px;
-      border: 1px solid var(--text-dark);
-      background: transparent;
-      color: var(--text-dark);
-      text-decoration: none;
-      font-size: 0.65rem;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .btn-action:hover {
-      background: var(--text-dark);
-      color: #FFF;
-    }
-
-    /* Gift / Angpao Box */
-    .gift-card {
-      background: #FFF;
-      border: 1px solid var(--border-color);
-      padding: 25px 20px;
+      gap: 12px;
       margin-top: 15px;
     }
 
-    .bank-name {
-      font-size: 0.85rem;
-      font-weight: 500;
-      letter-spacing: 1px;
-      margin-bottom: 5px;
+    .color-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
     }
 
-    .account-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      color: var(--accent-gold);
-      letter-spacing: 1px;
-      margin-bottom: 5px;
-    }
-
-    /* Music Floating Button */
+    /* MUSIC FLOATING BTN */
     #music-btn {
       position: fixed;
       bottom: 25px;
       right: 25px;
-      width: 40px;
-      height: 40px;
-      background: var(--text-dark);
+      width: 42px;
+      height: 42px;
+      background: var(--dark-brown);
       color: #FFF;
       border-radius: 50%;
       display: flex;
@@ -326,16 +440,13 @@
       justify-content: center;
       cursor: pointer;
       z-index: 998;
-      font-size: 0.8rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body class="no-scroll">
 
   <div class="mobile-frame">
-    <!-- Frame Garis Dekoratif -->
-    <div class="inner-border"></div>
 
     <!-- Music Player -->
     <audio id="bg-music" loop preload="auto">
@@ -345,130 +456,163 @@
       <i id="music-icon" class="fas fa-music"></i>
     </div>
 
-    <!-- COVER / LOCK SCREEN -->
+    <!-- COVER SCREEN (Mirip Video) -->
     <div id="cover">
       <div class="cover-top">
-        <div class="cover-tag">The Wedding Of</div>
-        <h1 class="cover-names">Ji-hoon &amp; Min-ji</h1>
+        <div class="sub-title">The Wedding of</div>
+        <div class="main-title">Yunita &amp; Riyan</div>
+        <div class="hashtag">#OLGANITAtogether</div>
       </div>
 
-      <div class="cover-photo-container">
-        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=800&auto=format&fit=crop" alt="Prewedding Cover">
+      <div class="guest-card">
+        <p>Kepada Yth. Bapak/Ibu/Saudara/i</p>
+        <div class="guest-name" id="guest-name">Nama Tamu</div>
+        <button class="btn-open" onclick="openInvitation()">
+          <i class="far fa-envelope-open"></i> Buka Undangan
+        </button>
       </div>
 
-      <div>
-        <button class="btn-open" onclick="openInvitation()">Open Invitation</button>
-      </div>
+      <p style="font-size: 0.6rem; opacity: 0.8;">*Mohon maaf apabila ada kesalahan penulisan nama/gelar</p>
     </div>
 
     <!-- MAIN CONTENT -->
 
-    <!-- Section 1: Intro / Quote -->
-    <section class="content-section">
-      <div class="section-subtitle">Wedding Invitation</div>
-      <div class="section-title" style="font-size: 1.8rem;">2026 . 10 . 24</div>
-      <div class="divider-line"></div>
-      
-      <div class="quote-box">
-        "Being deeply loved by someone gives you strength, while loving someone deeply gives you courage."
-      </div>
-      <p style="font-size: 0.7rem; color: var(--text-muted); margin-top: 10px; letter-spacing: 1px;">- Lao Tzu -</p>
-    </section>
-
-    <!-- Section 2: Groom & Bride -->
-    <section class="content-section" style="background-color: rgba(255,255,255,0.5);">
-      <div class="section-subtitle">Groom &amp; Bride</div>
-      <h2 class="section-title">We Are Getting Married</h2>
-
-      <!-- Groom -->
-      <div class="couple-card">
-        <div class="couple-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" alt="Groom">
-        </div>
-        <div class="couple-name">Kim Ji-hoon</div>
-        <div class="couple-parents">
-          First son of Mr. Kim Sung-min<br>&amp; Mrs. Lee Young-ae
-        </div>
+    <!-- Section 1: Hero Video Style -->
+    <div class="hero-section">
+      <div>
+        <div style="font-size: 0.75rem; letter-spacing: 2px;">The Wedding of</div>
+        <div style="font-family: 'Alex Brush', cursive; font-size: 3rem;">Yunita &amp; Riyan</div>
       </div>
 
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--accent-gold); margin: 20px 0;">&amp;</div>
-
-      <!-- Bride -->
-      <div class="couple-card">
-        <div class="couple-img-wrapper">
-          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" alt="Bride">
-        </div>
-        <div class="couple-name">Park Min-ji</div>
-        <div class="couple-parents">
-          Daughter of Mr. Park Hyun-woo<br>&amp; Mrs. Choi Ji-woo
-        </div>
+      <div class="countdown-overlay">
+        <div class="count-box"><div class="count-num" id="days">245</div><div class="count-label">Days</div></div>
+        <div class="count-box"><div class="count-num" id="hours">16</div><div class="count-label">Hours</div></div>
+        <div class="count-box"><div class="count-num" id="mins">43</div><div class="count-label">Minutes</div></div>
+        <div class="count-box"><div class="count-num" id="secs">15</div><div class="count-label">Seconds</div></div>
       </div>
-    </section>
 
-    <!-- Section 3: Date & Countdown -->
-    <section class="content-section">
-      <div class="section-subtitle">Save The Date</div>
-      <h2 class="section-title">October 24, 2026</h2>
-      <p style="font-size: 0.75rem; color: var(--text-muted);">Saturday, 11:00 AM WIB</p>
+      <a href="https://calendar.google.com" target="_blank" class="btn-open" style="background: rgba(0,0,0,0.4); text-decoration: none;">
+        <i class="far fa-calendar-alt"></i> Save The Date
+      </a>
+    </div>
 
-      <!-- Countdown -->
-      <div class="countdown-grid">
-        <div class="count-box">
-          <div class="count-num" id="days">00</div>
-          <div class="count-label">Days</div>
-        </div>
-        <div class="count-box">
-          <div class="count-num" id="hours">00</div>
-          <div class="count-label">Hours</div>
-        </div>
-        <div class="count-box">
-          <div class="count-num" id="mins">00</div>
-          <div class="count-label">Mins</div>
-        </div>
-        <div class="count-box">
-          <div class="count-num" id="secs">00</div>
-          <div class="count-label">Secs</div>
-        </div>
-      </div>
-    </section>
+    <!-- Section 2: 3 Foto Grid -->
+    <div class="photo-grid-3">
+      <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=400&auto=format&fit=crop" alt="Prewedding 1">
+      <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=400&auto=format&fit=crop" alt="Prewedding 2">
+      <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=400&auto=format&fit=crop" alt="Prewedding 3">
+    </div>
 
-    <!-- Section 4: Schedule -->
-    <section class="content-section" style="background-color: rgba(255,255,255,0.5);">
-      <div class="section-subtitle">Location &amp; Time</div>
-      <h2 class="section-title">Wedding Ceremony</h2>
-
-      <div class="event-card">
-        <div class="event-type">Holy Matrimony &amp; Reception</div>
-        <div class="divider-line" style="margin: 15px auto;"></div>
-        <div class="event-detail"><b>Time:</b> 11:00 WIB - Finish</div>
-        <div class="event-detail"><b>Venue:</b> Grand Ballroom, Hotel Mulia</div>
-        <div class="event-detail" style="font-size: 0.75rem; color: #888;">Jl. Asia Afrika No. 6, Jakarta</div>
-        
-        <a href="https://maps.google.com" target="_blank" class="btn-action">View Google Maps</a>
-      </div>
-    </section>
-
-    <!-- Section 5: Digital Gift -->
-    <section class="content-section">
-      <div class="section-subtitle">Wedding Gift</div>
-      <h2 class="section-title">Share Your Love</h2>
-      <p style="font-size: 0.75rem; color: var(--text-muted); line-height: 1.6;">
-        Doa restu Anda merupakan hadiah terindah bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui rekening di bawah ini:
+    <!-- Section 3: Salam & Kutipan -->
+    <div class="greeting-section">
+      <div class="arabic-text">السَّلاَمُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</div>
+      <p class="quote-text">
+        Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan. Ya Allah semoga ridho-Mu tercurah mengiringi pernikahan kami:
       </p>
+    </div>
 
-      <div class="gift-card">
-        <div class="bank-name">BANK BCA</div>
-        <div class="account-num" id="rekening-bca">123 456 7890</div>
-        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 12px;">a.n. Kim Ji-hoon</div>
-        <button class="btn-action" style="padding: 8px 18px; margin-top: 0;" onclick="copyRekening('rekening-bca')">Copy Number</button>
+    <!-- Section 4: Mempelai Wanita & Pria (Gaya Vertical Label) -->
+    <div class="profile-container">
+      
+      <!-- Bride Card -->
+      <div class="profile-card">
+        <div class="profile-side-label">The Bride</div>
+        <div class="profile-img-box">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop" alt="Yunita Safitri">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Yunita Safitri, S.Pd.</div>
+          <div class="profile-parents">
+            Putri Pertama dari<br>
+            <b>Bapak Adi Nugroho &amp; Ibu Gani</b>
+          </div>
+          <a href="https://instagram.com" target="_blank" class="btn-ig">
+            <i class="fab fa-instagram"></i> @mempelai
+          </a>
+        </div>
       </div>
-    </section>
+
+      <!-- Groom Card -->
+      <div class="profile-card">
+        <div class="profile-side-label">The Groom</div>
+        <div class="profile-img-box">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop" alt="Riyan Kuswoyo">
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Riyan Kuswoyo, S.T.</div>
+          <div class="profile-parents">
+            Putra Kedua dari<br>
+            <b>Bapak Sufian Jamal &amp; Ibu Elmira</b>
+          </div>
+          <a href="https://instagram.com" target="_blank" class="btn-ig">
+            <i class="fab fa-instagram"></i> @mempelai
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Section 5: Acara Pernikahan -->
+    <div class="event-section">
+      <div class="section-title-script">Wedding Event</div>
+
+      <!-- Akad Nikah -->
+      <div class="event-split-card">
+        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" alt="Akad Nikah">
+        <div class="event-body">
+          <div class="event-side-title">Akad Nikah</div>
+          <div class="event-details">
+            <div class="event-day">Kamis</div>
+            <div class="event-date-num">31</div>
+            <div class="event-time">Desember 2026<br>08.00 WIB</div>
+            <div class="event-location"><i class="fas fa-map-marker-alt"></i> KEDIAMAN MEMPELAI WANITA</div>
+            <div class="event-address">Jl. Soekarno-Hatta No. 5, Alian, Kebumen</div>
+            <a href="https://maps.google.com" target="_blank" class="btn-maps">
+              <i class="fas fa-map-marked-alt"></i> Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Resepsi -->
+      <div class="event-split-card">
+        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=600&auto=format&fit=crop" alt="Resepsi">
+        <div class="event-body">
+          <div class="event-side-title">Resepsi</div>
+          <div class="event-details">
+            <div class="event-day">Kamis</div>
+            <div class="event-date-num">31</div>
+            <div class="event-time">Desember 2026<br>09.00 - Selesai</div>
+            <div class="event-location"><i class="fas fa-map-marker-alt"></i> KEDIAMAN MEMPELAI WANITA</div>
+            <div class="event-address">Jl. Soekarno-Hatta No. 5, Alian, Kebumen</div>
+            <a href="https://maps.google.com" target="_blank" class="btn-maps">
+              <i class="fas fa-map-marked-alt"></i> Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Section 6: Dress Code -->
+    <div class="dress-code-box">
+      <div class="dress-code-title">Dress Code</div>
+      <p style="font-size: 0.7rem; color: var(--text-muted); line-height: 1.5;">
+        Dengan hormat, kami mengundang Anda untuk mengenakan warna pilihan ini di hari pernikahan kami:
+      </p>
+      <div class="color-palette">
+        <div class="color-circle" style="background-color: #E8E2D5;"></div>
+        <div class="color-circle" style="background-color: #D3CDC6;"></div>
+        <div class="color-circle" style="background-color: #C5B097;"></div>
+        <div class="color-circle" style="background-color: #8C735B;"></div>
+        <div class="color-circle" style="background-color: #594839;"></div>
+      </div>
+    </div>
 
     <!-- Footer -->
-    <footer style="padding: 40px 20px 60px 20px; text-align: center; border-top: 1px solid var(--border-color);">
-      <div style="font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; margin-bottom: 5px;">Ji-hoon &amp; Min-ji</div>
-      <p style="font-size: 0.65rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;">Thank You</p>
-    </footer>
+    <div style="padding: 30px; text-align: center; font-size: 0.7rem; color: var(--text-muted);">
+      <p>Terima Kasih</p>
+    </div>
 
   </div>
 
@@ -477,7 +621,6 @@
       document.getElementById('cover').classList.add('opened');
       document.body.classList.remove('no-scroll');
       
-      // Play Audio
       var music = document.getElementById('bg-music');
       if (music) {
         music.play().catch(function(e) { console.log(e); });
@@ -496,28 +639,6 @@
         icon.className = 'fas fa-volume-mute';
       }
     }
-
-    function copyRekening(elementId) {
-      var text = document.getElementById(elementId).innerText;
-      navigator.clipboard.writeText(text).then(function() {
-        alert('Nomor rekening berhasil disalin!');
-      });
-    }
-
-    // Simple Countdown Script (Target: 24 Oct 2026)
-    const targetDate = new Date("October 24, 2026 11:00:00").getTime();
-    
-    setInterval(function() {
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      if (diff > 0) {
-        document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-        document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000);
-      }
-    }, 1000);
   </script>
 </body>
 </html>
