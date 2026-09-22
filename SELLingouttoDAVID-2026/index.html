@@ -1015,10 +1015,13 @@
  
       <div class="event-card-single reveal">
         
-        <!-- 1. Holy Matrimony (Ikon Cincin) -->
+<!-- 1. Holy Matrimony (Ikon Cincin Overlapping) -->
         <div class="sub-event-item">
-          <div class="event-icon-wrap">
-            <i class="fas fa-ring"></i>
+          <div class="event-icon-wrap" style="display: inline-flex; align-items: center; justify-content: center;">
+            <!-- Cincin pertama (kiri) -->
+            <i class="fas fa-ring" style="position: relative; z-index: 2;"></i>
+            <!-- Cincin kedua (kanan bawah tumpang tindih) -->
+            <i class="fas fa-ring" style="position: relative; z-index: 1; margin-left: -0.6em; margin-top: 0.5em; opacity: 0.9;"></i>
           </div>
           <div class="event-type">Holy Matrimony</div>
 
@@ -1071,7 +1074,7 @@
             </div>
           </div>
 
-          <div class="event-time">06.00 PM</div>
+          <div class="event-time">18.00 PM</div>
 
           <div class="event-location-block" style="margin-top: 12px;">
             <div class="event-venue">Ballroom Aston Hotel Palembang</div>
