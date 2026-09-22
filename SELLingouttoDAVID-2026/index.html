@@ -403,13 +403,235 @@
       border-bottom: 1px solid rgba(212, 175, 55, 0.4);
     }
  
+    /* WEDDING EVENT DATE CARDS - inspired by the reference design */
     .event-card {
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid var(--gold);
-      border-radius: 12px;
-      padding: 30px 20px;
-      margin-bottom: 25px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      position: relative;
+      background: #fffdf8;
+      border: 1px solid #c99d2e;
+      border-radius: 26px;
+      padding: 34px 28px 30px;
+      margin: 0 auto 28px;
+      max-width: 620px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(90, 55, 15, 0.10);
+      text-align: center;
+    }
+
+    .event-card::before {
+      content: "";
+      position: absolute;
+      inset: 7px;
+      border: 1px solid rgba(201, 157, 46, 0.18);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+
+    .event-fan {
+      width: 82px;
+      height: 48px;
+      margin: 0 auto 16px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .event-fan svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 3px 3px rgba(100, 70, 20, 0.16));
+    }
+
+    .event-type {
+      position: relative;
+      z-index: 1;
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      line-height: 1.35;
+      color: #8d2424;
+      margin: 0 0 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .event-date-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 128px 1fr;
+      align-items: center;
+      gap: 14px;
+      margin: 0 auto 24px;
+      max-width: 540px;
+    }
+
+    .event-date-side {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #6f6252;
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      letter-spacing: 3px;
+      white-space: nowrap;
+    }
+
+    .event-date-side.left {
+      justify-content: flex-end;
+    }
+
+    .event-date-side.right {
+      justify-content: flex-start;
+    }
+
+    .event-date-line {
+      height: 1px;
+      flex: 1;
+      min-width: 25px;
+      background: #b9a27d;
+    }
+
+    .event-date-circle {
+      width: 124px;
+      height: 124px;
+      border: 2px solid #aa9a7e;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 18px rgba(80, 55, 20, 0.08);
+    }
+
+    .event-weekday {
+      font-family: 'Cinzel', serif;
+      font-size: 0.92rem;
+      color: #6f6252;
+      letter-spacing: 3px;
+      margin-bottom: 3px;
+    }
+
+    .event-day {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.55rem;
+      line-height: 1;
+      color: #a10f0f;
+      font-weight: 600;
+    }
+
+    .event-location-block {
+      position: relative;
+      z-index: 1;
+      border-top: 1px dashed rgba(151, 124, 80, 0.28);
+      padding-top: 24px;
+    }
+
+    .event-venue {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.5;
+      color: #8d2424;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .event-address {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      color: #756858;
+      margin-bottom: 10px;
+    }
+
+    .event-time {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: #a10f0f;
+      margin: 12px 0 18px;
+    }
+
+    .event-map-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-width: 250px;
+      margin-top: 2px;
+      padding: 13px 24px;
+      background: linear-gradient(135deg, #f8e7a8 0%, #d7ad43 48%, #b98619 100%);
+      color: #5c1a1a;
+      text-decoration: none;
+      border: 1px solid #c79829;
+      border-radius: 8px;
+      box-shadow: 0 7px 16px rgba(168, 119, 20, 0.18);
+      font-family: 'Cinzel', serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .event-map-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(168, 119, 20, 0.25);
+    }
+
+    @media (max-width: 560px) {
+      .event-card {
+        padding: 28px 16px 24px;
+        border-radius: 22px;
+      }
+
+      .event-type {
+        font-size: 1.15rem;
+        letter-spacing: 1.5px;
+      }
+
+      .event-date-row {
+        grid-template-columns: 1fr 94px 1fr;
+        gap: 7px;
+      }
+
+      .event-date-circle {
+        width: 90px;
+        height: 90px;
+      }
+
+      .event-weekday {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+      }
+
+      .event-day {
+        font-size: 2rem;
+      }
+
+      .event-date-side {
+        font-size: 1.05rem;
+        letter-spacing: 2px;
+        gap: 7px;
+      }
+
+      .event-venue {
+        font-size: 0.98rem;
+      }
+
+      .event-address {
+        font-size: 0.98rem;
+      }
+
+      .event-map-btn {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+      }
     }
  
     .section-alt {
@@ -810,32 +1032,88 @@
  
       <!-- Holy Matrimony -->
       <div class="event-card reveal">
+        <div class="event-fan" aria-hidden="true">
+          <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 61 L10 21 Q60 -3 110 21 Z" fill="#e9c76b" opacity=".28"/>
+            <path d="M60 60 L18 23 Q60 4 102 23 Z" fill="#d9b34c" stroke="#a8873c" stroke-width="1.5"/>
+            <path d="M60 60 L30 20 M60 60 L45 11 M60 60 L60 7 M60 60 L75 11 M60 60 L90 20"
+                  stroke="#9b7933" stroke-width="1.2" fill="none"/>
+            <path d="M18 23 Q60 4 102 23" fill="none" stroke="#f6e4a5" stroke-width="2"/>
+            <circle cx="60" cy="60" r="3.5" fill="#80652f"/>
+          </svg>
+        </div>
+
         <div class="event-type">Holy Matrimony</div>
-        <div class="event-detail"><b>Date:</b> Friday, October 09th, 2026</div>
-        <div class="event-detail"><b>Time:</b> 10:00 WIB</div>
-        <div class="event-detail" style="margin-top: 10px;">
-          <b>Location:</b><br>
-          Golden Sand 5–6 Lt. 3, Aston Palembang<br>
-          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+
+        <div class="event-date-row">
+          <div class="event-date-side left">
+            <span class="event-date-line"></span>
+            <span>OCT</span>
+          </div>
+
+          <div class="event-date-circle">
+            <div class="event-weekday">FRI</div>
+            <div class="event-day">09</div>
+          </div>
+
+          <div class="event-date-side right">
+            <span>2026</span>
+            <span class="event-date-line"></span>
+          </div>
+        </div>
+
+        <div class="event-location-block">
+          <div class="event-venue">Golden Sand 5–6 Lt. 3 - Aston Hotel Palembang</div>
+          <div class="event-address">Jl. Jendral Basuki Rahmat No. 189, Palembang</div>
+          <div class="event-time">10.00 AM</div>
+
+          <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" rel="noopener noreferrer" class="event-map-btn">
+            <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
+          </a>
         </div>
       </div>
- 
+
       <!-- Wedding Reception -->
       <div class="event-card reveal">
-        <div class="event-type">Wedding Reception</div>
-        <div class="event-detail"><b>Date:</b> Saturday, October 10th, 2026</div>
-        <div class="event-detail"><b>Time:</b> 18:00 WIB</div>
-        <div class="event-detail" style="margin-top: 10px;">
-          <b>Location:</b><br>
-          Ballroom Aston Palembang<br>
-          <small>Jl. Jendral Basuki Rahmat No. 189, Palembang</small>
+        <div class="event-fan" aria-hidden="true">
+          <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 61 L10 21 Q60 -3 110 21 Z" fill="#e9c76b" opacity=".28"/>
+            <path d="M60 60 L18 23 Q60 4 102 23 Z" fill="#d9b34c" stroke="#a8873c" stroke-width="1.5"/>
+            <path d="M60 60 L30 20 M60 60 L45 11 M60 60 L60 7 M60 60 L75 11 M60 60 L90 20"
+                  stroke="#9b7933" stroke-width="1.2" fill="none"/>
+            <path d="M18 23 Q60 4 102 23" fill="none" stroke="#f6e4a5" stroke-width="2"/>
+            <circle cx="60" cy="60" r="3.5" fill="#80652f"/>
+          </svg>
         </div>
-      </div>
- 
-      <div class="reveal">
-        <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" class="btn-map">
-          <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
-        </a>
+
+        <div class="event-type">Wedding Reception</div>
+
+        <div class="event-date-row">
+          <div class="event-date-side left">
+            <span class="event-date-line"></span>
+            <span>OCT</span>
+          </div>
+
+          <div class="event-date-circle">
+            <div class="event-weekday">SAT</div>
+            <div class="event-day">10</div>
+          </div>
+
+          <div class="event-date-side right">
+            <span>2026</span>
+            <span class="event-date-line"></span>
+          </div>
+        </div>
+
+        <div class="event-location-block">
+          <div class="event-venue">Ballroom - Aston Hotel Palembang</div>
+          <div class="event-address">Jl. Jendral Basuki Rahmat No. 189, Palembang</div>
+          <div class="event-time">06.00 PM</div>
+
+          <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" rel="noopener noreferrer" class="event-map-btn">
+            <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
+          </a>
+        </div>
       </div>
     </section>
  
