@@ -241,6 +241,9 @@
       min-height: 100vh;
       box-shadow: 0 0 25px rgba(0,0,0,0.5);
       position: relative;
+      /* Sentuhan Visual: Ornamen Bingkai Klasik (Vintage Border) di sekeliling kartu */
+      border: 12px solid transparent;
+      border-image: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA7C11 100%) 1;
     }
  
     .container::before {
@@ -248,6 +251,20 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(255, 253, 249, 0.90);
+      z-index: 1;
+    }
+
+    /* Sentuhan Visual: Watermark / Bayangan Foto Transparan tipis di latar belakang kartu acara */
+    .container::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-image: url('images/caricature.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: 80%;
+      opacity: 0.04;
+      pointer-events: none;
       z-index: 1;
     }
  
@@ -396,13 +413,14 @@
     .event-card-single {
       position: relative;
       background: #fffdf8;
-      border: 1px solid #c99d2e;
+      border: 2px solid #c99d2e;
       border-radius: 26px;
       padding: 34px 28px 30px;
       margin: 0 auto 28px;
       max-width: 620px;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(90, 55, 15, 0.10);
+      /* Sentuhan Visual: Efek Bayangan dan Gradasi Emas yang Lebih Tebal pada kotak acara */
+      box-shadow: 0 15px 35px rgba(100, 60, 10, 0.25), 0 0 15px rgba(212, 175, 55, 0.3) inset;
       text-align: center;
     }
 
@@ -410,7 +428,7 @@
       content: "";
       position: absolute;
       inset: 7px;
-      border: 1px solid rgba(201, 157, 46, 0.18);
+      border: 1px solid rgba(201, 157, 46, 0.35);
       border-radius: 20px;
       pointer-events: none;
     }
@@ -1306,8 +1324,7 @@
           </a>
         </div>
       </div>
-      
-      <!-- VENDOR 13: HAIRDO GROOM -->
+        <!-- VENDOR 13: HAIRDO GROOM -->
       <a href="https://instagram.com/theluxmen_hairstudio" target="_blank" style="text-decoration: none; color: inherit; display: block; background: #fff; padding: 12px 10px; border-radius: 10px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 2px 5px rgba(0,0,0,0.03); scroll-snap-align: start;">
         <p style="font-size: 0.65rem; color: #888; text-transform: uppercase; margin: 0 0 4px 0;">Hairdo Groom</p>
         <span style="font-size: 0.7rem; color: var(--gold); display: flex; align-items: center; justify-content: center; gap: 4px;">
@@ -1384,7 +1401,7 @@
   </div>
 </section>
 
-
+    
 <!-- SCRIPT SLIDESHOW OTOMATIS -->
 <script>
   (function() {
