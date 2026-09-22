@@ -38,6 +38,35 @@
       overflow: hidden;
       height: 100vh;
     }
+    /* Desain Kartu Gaya ATM untuk Logo BCA */
+    .bca-card-badge {
+      background: linear-gradient(135deg, #004080 0%, #0066cc 100%);
+      color: white;
+      width: 120px;
+      height: 75px;
+      margin: 0 auto 15px auto;
+      border-radius: 10px;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      box-shadow: 0 4px 10px rgba(0, 64, 128, 0.3);
+      border: 1px solid rgba(212, 175, 55, 0.5); /* Sentuhan garis emas tipis */
+    }
+    .bca-logo-text {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      font-style: italic;
+    }
+    .bca-chip {
+      width: 22px;
+      height: 16px;
+      background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%);
+      border-radius: 3px;
+    }
  
     /* PETALS CONTAINER & ANIMATION */
     #petals-container {
@@ -1126,7 +1155,7 @@
       </div>
     </section>
       
-    <!-- DIGITAL ENVELOPE / WEDDING GIFT -->
+<!-- DIGITAL ENVELOPE / WEDDING GIFT -->
     <section class="event-bg">
       <div class="reveal">
         <h2 class="section-title">Wedding Gift</h2>
@@ -1135,8 +1164,14 @@
           Your presence and blessings on our wedding day are the greatest gift of all. However, if you wish to give a gift, we provide a digital envelope below:
         </p>
       </div>
- 
+   
       <div class="gift-card reveal">
+        <!-- Kartu Mini Gaya BCA (Pengganti Logo Gambar) -->
+        <div class="bca-card-badge">
+          <div class="bca-chip"></div>
+          <div class="bca-logo-text">BCA</div>
+        </div>
+
         <div class="bank-name">BANK BCA</div>
         <div class="account-num" id="acc-num">0214023411</div>
         <div style="font-size: 0.9rem; color: #555; margin-bottom: 12px;">a.n. Selly Agustina</div>
