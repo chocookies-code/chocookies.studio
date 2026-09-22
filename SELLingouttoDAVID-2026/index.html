@@ -415,19 +415,17 @@
       pointer-events: none;
     }
 
-    .event-fan {
-      width: 82px;
-      height: 48px;
+    .event-icon-wrap {
+      width: 70px;
+      height: 50px;
       margin: 0 auto 16px;
       position: relative;
       z-index: 1;
-    }
-
-    .event-fan svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-      filter: drop-shadow(0 3px 3px rgba(100, 70, 20, 0.16));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #c99d2e;
+      font-size: 2.2rem;
     }
 
     .sub-event-item {
@@ -990,7 +988,7 @@
       </div>
     </section>
  
-    <!-- WEDDING EVENTS SECTION (COMBINED INTO 1 BOX WITH 1 MAP BUTTON) -->
+    <!-- WEDDING EVENTS SECTION (COMBINED INTO 1 BOX DENGAN IKON KHUSUS & 1 MAP BUTTON) -->
     <section class="event-bg">
       <div class="reveal">
         <h2 class="section-title">Wedding Events</h2>
@@ -998,19 +996,12 @@
       </div>
  
       <div class="event-card-single reveal">
-        <div class="event-fan" aria-hidden="true">
-          <svg viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
-            <path d="M60 61 L10 21 Q60 -3 110 21 Z" fill="#e9c76b" opacity=".28"/>
-            <path d="M60 60 L18 23 Q60 4 102 23 Z" fill="#d9b34c" stroke="#a8873c" stroke-width="1.5"/>
-            <path d="M60 60 L30 20 M60 60 L45 11 M60 60 L60 7 M60 60 L75 11 M60 60 L90 20"
-                  stroke="#9b7933" stroke-width="1.2" fill="none"/>
-            <path d="M18 23 Q60 4 102 23" fill="none" stroke="#f6e4a5" stroke-width="2"/>
-            <circle cx="60" cy="60" r="3.5" fill="#80652f"/>
-          </svg>
-        </div>
-
-        <!-- 1. Holy Matrimony -->
+        
+        <!-- 1. Holy Matrimony (Ikon Cincin) -->
         <div class="sub-event-item">
+          <div class="event-icon-wrap">
+            <i class="fas fa-ring"></i>
+          </div>
           <div class="event-type">Holy Matrimony</div>
 
           <div class="event-date-row">
@@ -1031,10 +1022,18 @@
           </div>
 
           <div class="event-time">10.00 AM</div>
+          
+          <div class="event-location-block" style="margin-top: 12px;">
+            <div class="event-venue">Aston Hotel Palembang (Ruangan Kapel/Gereja)</div>
+            <div class="event-address">Jl. Jendral Basuki Rahmat No. 189, Palembang</div>
+          </div>
         </div>
 
-        <!-- 2. Wedding Reception -->
+        <!-- 2. Wedding Reception (Ikon 2 Gelas Wine / Toast) -->
         <div class="sub-event-item" style="border-bottom: none; margin-bottom: 15px; padding-bottom: 0;">
+          <div class="event-icon-wrap">
+            <i class="fas fa-glass-cheers"></i>
+          </div>
           <div class="event-type">Wedding Reception</div>
 
           <div class="event-date-row">
@@ -1055,13 +1054,15 @@
           </div>
 
           <div class="event-time">06.00 PM</div>
+
+          <div class="event-location-block" style="margin-top: 12px;">
+            <div class="event-venue">Aston Hotel Palembang (Ballroom Utama)</div>
+            <div class="event-address">Jl. Jendral Basuki Rahmat No. 189, Palembang</div>
+          </div>
         </div>
 
-        <!-- Single Location & Single Map Button -->
-        <div class="event-location-block">
-          <div class="event-venue">Aston Hotel Palembang</div>
-          <div class="event-address">Jl. Jendral Basuki Rahmat No. 189, Palembang</div>
-
+        <!-- Single Map Button di Bawah -->
+        <div style="margin-top: 25px;">
           <a href="https://maps.app.goo.gl/VwrjECcnC8ALh9Lx6" target="_blank" rel="noopener noreferrer" class="event-map-btn">
             <i class="fas fa-map-marker-alt"></i> VIEW LOCATION ON MAPS
           </a>
