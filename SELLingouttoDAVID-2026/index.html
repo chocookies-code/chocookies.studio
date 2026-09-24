@@ -1662,83 +1662,89 @@ preloadSliderImages();
 
     window.addEventListener('scroll', handleScrollReveal);
 
-    // 9. SHEETMONKEY INTEGRATION
-    const SHEETMONKEY_URL = 'https://script.google.com/macros/s/AKfycbxLACeQFsJ4yayj96Mh5JEKC0ThwRPLcUAlpelbgaPW1K9ykIzuq3GN7jacuTuvJAQr/exec';
-    const rsvpForm = document.getElementById('rsvp-form');
- 
-    if (rsvpForm) {
-      rsvpForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const submitBtn = rsvpForm.querySelector('.btn-submit');
-        submitBtn.innerText = 'SENDING...';
-        submitBtn.disabled = true;
- 
-        const formData = new FormData(rsvpForm);
-        const data = Object.fromEntries(formData.entries());
- 
-        try {
-          const response = await fetch(SHEETMONKEY_URL, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            },
-            body: JSON.stringify(data)
-          });
- 
-          if (response.ok) {
-            alert('Thank you! Your RSVP and warm wishes have been saved.');
-            document.getElementById('rsvp-wish').value = '';
-            fetchWishes();
-          } else {
-            alert('Failed to send RSVP. Please try again.');
-          }
-        } catch (error) {
-          alert('Network error. Please try again.');
-        } finally {
-          submitBtn.innerText = 'SEND CONFIRMATION';
-          submitBtn.disabled = false;
-        }
-      });
-    }
-    // FUNGSI UNTUK MEMANGGIL DATA UCAPAN DARI SHEETMONKEY
-  async function fetchWishes() {
-    const wishesList = document.getElementById('wishes-list');
-    if (!wishesList) return;
+// INTEGRASI GOOGLE APPS SCRIPT
+   const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz6IJLIfzgLVESXQjeGWsizvXUvO9pkfH02S-hY6cNoLAfDAI7pQudk1PfkmQ5pDkPk/exec';
+   const rsvpForm = document.getElementById('rsvp-form');
 
-    try {
-      const response = await fetch(SHEETMONKEY_URL);
-      if (!response.ok) throw new Error('Gagal mengambil data');
-      
-      const data = await response.json();
-      
-      // Ambil data yang isi pesannya tidak kosong
-      const validWishes = data.filter(item => item.Wishes && item.Wishes.trim() !== '');
+   if (rsvpForm) {
+     rsvpForm.addEventListener('submit', async (e) => {
+       e.preventDefault();
+       const submitBtn = rsvpForm.querySelector('.btn-submit');
+       const originalBtnText = submitBtn ? submitBtn.innerText : 'SEND CONFIRMATION';
+       
+       if (submitBtn) {
+         submitBtn.innerText = 'SENDING...';
+         submitBtn.disabled = true;
+       }
 
-      if (validWishes.length === 0) {
-        wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Belum ada ucapan. Jadilah yang pertama!</p>';
-        return;
-      }
+       // Mengirim data menggunakan FormData (sesuai format Apps Script)
+       const formData = new FormData(rsvpForm);
 
-      // Urutkan dari ucapan terbaru (paling atas)
-      wishesList.innerHTML = validWishes.reverse().map(item => `
-        <div class="wish-card">
-          <div class="wish-header">
-            <span class="wish-name">${item.Name || 'Guest'}</span>
-            <span class="wish-status">${item.Status === 'Attending' ? 'Hadir' : 'Absen'}</span>
-          </div>
-          <div class="wish-text">${item.Wishes}</div>
-        </div>
-      `).join('');
+       try {
+         const response = await fetch(SCRIPT_URL, {
+           method: 'POST',
+           body: formData
+         });
 
-    } catch (error) {
-      console.error('Error fetching wishes:', error);
-      wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Gagal memuat ucapan.</p>';
-    }
-  }
+         const result = await response.json();
 
-  // Langsung jalankan saat halaman terbuka
-  fetchWishes();
+         if (result.result === 'success') {
+           alert('Terima kasih! RSVP dan ucapan Anda berhasil disimpan.');
+           rsvpForm.reset();
+           fetchWishes(); // Refresh daftar ucapan
+         } else {
+           alert('Gagal mengirim RSVP. Silakan coba lagi.');
+         }
+       } catch (error) {
+         console.error('Error submitting form:', error);
+         alert('Terjadi kesalahan jaringan. Silakan coba lagi.');
+       } finally {
+         if (submitBtn) {
+           submitBtn.innerText = originalBtnText;
+           submitBtn.disabled = false;
+         }
+       }
+     });
+   }
+
+   // FUNGSI UNTUK MEMANGGIL DATA UCAPAN DARI GOOGLE APPS SCRIPT
+   async function fetchWishes() {
+     const wishesList = document.getElementById('wishes-list');
+     if (!wishesList) return;
+
+     try {
+       const response = await fetch(SCRIPT_URL);
+       if (!response.ok) throw new Error('Gagal mengambil data');
+       
+       const data = await response.json();
+       
+       // Saring data agar hanya menampilkan yang punya ucapan
+       const validWishes = data.filter(item => item.wishes && item.wishes.trim() !== '');
+
+       if (validWishes.length === 0) {
+         wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Belum ada ucapan. Jadilah yang pertama!</p>';
+         return;
+       }
+
+       // Urutkan dari ucapan terbaru (paling atas)
+       wishesList.innerHTML = validWishes.reverse().map(item => `
+         <div class="wish-card">
+           <div class="wish-header">
+             <span class="wish-name">${item.name || 'Tamu'}</span>
+             <span class="wish-status">${item.status || ''}</span>
+           </div>
+           <div class="wish-text">${item.wishes}</div>
+         </div>
+       `).join('');
+
+     } catch (error) {
+       console.error('Error fetching wishes:', error);
+       wishesList.innerHTML = '<p style="text-align: center; font-size: 0.85rem; color: #777;">Gagal memuat ucapan.</p>';
+     }
+   }
+
+   // Langsung jalankan saat halaman terbuka
+   fetchWishes();
 
     // 10. COUNTDOWN TIMER LOGIC
     const targetDate = new Date("2026-10-10T10:00:00").getTime();
